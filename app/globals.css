@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .text-preset-1 {
+    @apply text-[56px] leading-[120%] tracking-normal;
+  }
+  .text-preset-2 {
+    @apply text-2xl leading-[120%] tracking-normal;
+  }
+  .text-preset-3 {
+    @apply text-base leading-normal tracking-normal;
+  }
+  .text-preset-4 {
+    @apply text-sm leading-normal tracking-normal;
+  }
+  .text-preset-4-bold {
+    @apply text-sm leading-normal tracking-normal font-bold;
+  }
+}
