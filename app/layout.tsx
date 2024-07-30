@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Red_Hat_Text } from "next/font/google";
 import "./globals.css";
+import Providers from "@/context/Providers";
 
 const redHatText = Red_Hat_Text({ subsets: ["latin"], variable: "--font-red-hat-text" });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${redHatText.variable} font-sans`}>{children}</body>
+      <Providers>
+        <body className={`${redHatText.variable} font-sans`}>{children}</body>
+      </Providers>
     </html>
   );
 }

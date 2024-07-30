@@ -1,7 +1,4 @@
-'use client';
-
 import { createContext, ReactElement, ReactNode, useState } from "react";
-
 import data from "@/data/data.json" with {type: "json"};
 
 export type ProductType = {
@@ -14,9 +11,15 @@ export type ProductType = {
   name: string;
   category: string;
   price: number;
+  id: string;
 };
 
-const InitState:ProductType[] = data;
+
+const InitState:ProductType[] = data.map((product) => {
+  const productWithId = { ...product, id: crypto.randomUUID() }
+  return productWithId;
+});
+
 export type UseProductsContextType = { products: ProductType[] };
 
 const initContextState: UseProductsContextType = { products: [] };

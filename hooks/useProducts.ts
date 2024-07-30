@@ -1,5 +1,5 @@
-import ProductsContext, { UseProductsContextType } from "@/context/ProductsContext"
 import { useContext } from "react"
+import ProductsContext, { UseProductsContextType } from "@/context/ProductsContext"
 
 
 function useProducts():UseProductsContextType {
