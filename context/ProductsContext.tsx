@@ -1,5 +1,5 @@
 import { createContext, ReactElement, ReactNode, useState } from "react";
-import data from "@/data/data.json" with {type: "json"};
+import data from "@/data/data.json" with { type: "json" };
 
 export type ProductType = {
   image: {
@@ -14,9 +14,8 @@ export type ProductType = {
   id: string;
 };
 
-
-const InitState:ProductType[] = data.map((product) => {
-  const productWithId = { ...product, id: crypto.randomUUID() }
+const initState: ProductType[] = data.map((product) => {
+  const productWithId = { ...product, id: crypto.randomUUID() };
   return productWithId;
 });
 
@@ -27,12 +26,12 @@ const ProductsContext = createContext<UseProductsContextType>(initContextState);
 
 type ChildrenProps = { children: ReactNode };
 
-export function ProductsContextProvider({children}: ChildrenProps):ReactElement{
-  const [products, _] = useState<ProductType[]>(InitState);
-  
-  return <ProductsContext.Provider value={{products}}>{children}</ProductsContext.Provider>;
+export function ProductsContextProvider({
+  children,
+}: ChildrenProps): ReactElement {
+  const [products, _] = useState<ProductType[]>(initState);
+
+  return <ProductsContext.Provider value={{ products }}>{children}</ProductsContext.Provider>
 }
 
 export default ProductsContext;
-
-
