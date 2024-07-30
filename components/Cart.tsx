@@ -4,7 +4,7 @@ import useCart from "@/hooks/useCart";
 import CartItem from "./CartItem";
 
 function Cart() {
-  const { cart } = useCart();
+  const { cart, totalPrice } = useCart();
 
   return (
     <section>
@@ -18,6 +18,7 @@ function Cart() {
           );
         })}
       </ul>
+      <p>Total: {totalPrice}</p>
     </section>
   );
 }
