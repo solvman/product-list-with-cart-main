@@ -1,6 +1,11 @@
-"use client";
-import useProducts from "@/hooks/useProducts";
+import Cart from "@/components/Cart";
+import Menu from "@/components/Menu";
 
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <Menu />
+      <Cart />
+    </main>
+  );
 }

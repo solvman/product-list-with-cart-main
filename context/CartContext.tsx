@@ -1,4 +1,10 @@
-import { useMemo, useReducer, createContext, ReactNode } from "react";
+import {
+  useMemo,
+  useReducer,
+  createContext,
+  ReactNode,
+  useCallback,
+} from "react";
 
 export type CartItemType = {
   id: string;
@@ -95,23 +101,40 @@ function reducer(state: CartStateType, action: ReducerAction): CartStateType {
 
 function useCartContext(initState: CartStateType) {
   const [state, dispatch] = useReducer(reducer, initCartState);
-  const ACTIONS = useMemo(() => REDUCER_ACTIONS, []);
   const cart = state.cart;
+
+  const increment = useCallback((item: CartItemType) => {
+    dispatch({ type: REDUCER_ACTIONS.INCREMENT, payload: item });
+  }, []);
+
+  const decrement = useCallback((item: CartItemType) => {
+    dispatch({ type: REDUCER_ACTIONS.DECREMENT, payload: item });
+  }, []);
+
+  const remove = useCallback((item: CartItemType) => {
+    dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item });
+  }, []);
+
+  const submit = useCallback((item: CartItemType) => {
+    dispatch({ type: REDUCER_ACTIONS.SUBMIT, payload: {} as CartItemType });
+  }, []);
 
   const totalPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(cart.reduce((acc, item) => acc + item.price * item.quantity, 0));
 
-  return { cart, ACTIONS, dispatch, totalPrice };
+  return { cart, increment, decrement, remove, submit, totalPrice };
 }
 
 export type UseCartContextType = ReturnType<typeof useCartContext>;
 
 const initCartContextState: UseCartContextType = {
   cart: [],
-  ACTIONS: REDUCER_ACTIONS,
-  dispatch: () => {},
+  increment: () => {},
+  decrement: () => {},
+  remove: () => {},
+  submit: () => {},
   totalPrice: "",
 };
 
