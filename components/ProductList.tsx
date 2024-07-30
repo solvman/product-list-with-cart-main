@@ -4,18 +4,15 @@ import { ProductType } from "@/context/ProductsContext";
 import useProducts from "@/hooks/useProducts";
 import Product from "./Product";
 
-function Menu() {
+function ProductList() {
   const { products } = useProducts();
 
   return (
     <section>
       <h2 className="sr-only">Menu</h2>
-      <ul className="grid grid-cols-4">
+      <ul className="m-auto flex flex-col gap-300">
         {products.map((product: ProductType) => (
-          <li
-            key={product.id}
-            className="rounded2xl border border-red/50 shadow-md"
-          >
+          <li key={product.id}>
             <Product product={product} />
           </li>
         ))}
@@ -23,4 +20,4 @@ function Menu() {
     </section>
   );
 }
-export default Menu;
+export default ProductList;

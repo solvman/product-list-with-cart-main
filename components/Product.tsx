@@ -1,6 +1,7 @@
 import { CartItemType } from "@/context/CartContext";
 import { ProductType } from "@/context/ProductsContext";
 import useCart from "@/hooks/useCart";
+import Button from "./Button";
 
 type PropsType = { product: ProductType };
 
@@ -9,7 +10,6 @@ function Product({ product }: PropsType) {
 
   const itemInCart = cart.find((item) => item.id === product.id);
   const quantity = itemInCart?.quantity || 0;
-  const isInCart = quantity > 0;
 
   const cartItem: CartItemType = {
     id: product.id,
@@ -19,32 +19,34 @@ function Product({ product }: PropsType) {
     quantity: 1,
   };
 
+  const formatedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(product.price);
+
   const handleIncrement = () => increment(cartItem);
   const handleDecrement = () => decrement(cartItem);
 
   return (
-    <>
-      <h3>{product.name}</h3>
-      <p>${product.price}</p>
-      {!isInCart && <button onClick={handleIncrement}>Add to Cart</button>}
-      {isInCart && (
-        <div className="flex flex-row items-center justify-around rounded-full border border-rose-500 bg-rose-300">
-          <button
-            onClick={handleDecrement}
-            className="font-3xl full h-10 w-10 rounded-full border bg-rose-900 text-white hover:bg-rose-900/50"
-          >
-            -
-          </button>
-          <span>{quantity}</span>
-          <button
-            onClick={handleIncrement}
-            className="font-3xl full h-10 w-10 rounded-full border bg-rose-900 text-white hover:bg-rose-900/50"
-          >
-            +
-          </button>
+    <div className="flex flex-col gap-200">
+      <div className="relative mb-[22px]">
+        <div className="h-[212px] w-full rounded-lg bg-green">
+          {/* Image */}
         </div>
-      )}
-    </>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+          <Button
+            quantity={quantity}
+            handleIncrement={handleIncrement}
+            handleDecrement={handleDecrement}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col gap-50">
+        <p className="text-preset-4 text-rose-500">{product.category}</p>
+        <h3 className="text-preset-3 text-rose-900">{product.name}</h3>
+        <p className="text-preset-3 text-red">{formatedPrice}</p>
+      </div>
+    </div>
   );
 }
 export default Product;
