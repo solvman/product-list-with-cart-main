@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body
-          className={`${redHatText.variable} min-w-[375px] bg-rose-50 font-sans`}
+          className={`${redHatText.variable} min-w-[375px] bg-rose-50 font-sans text-rose-900`}
         >
           {children}
         </body>

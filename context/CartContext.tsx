@@ -1,10 +1,4 @@
-import {
-  useMemo,
-  useReducer,
-  createContext,
-  ReactNode,
-  useCallback,
-} from "react";
+import { useReducer, createContext, ReactNode, useCallback } from "react";
 
 export type CartItemType = {
   id: string;
@@ -124,7 +118,9 @@ function useCartContext(initState: CartStateType) {
     currency: "USD",
   }).format(cart.reduce((acc, item) => acc + item.price * item.quantity, 0));
 
-  return { cart, increment, decrement, remove, submit, totalPrice };
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+  return { cart, increment, decrement, remove, submit, totalPrice, totalItems };
 }
 
 export type UseCartContextType = ReturnType<typeof useCartContext>;
@@ -136,6 +132,7 @@ const initCartContextState: UseCartContextType = {
   remove: () => {},
   submit: () => {},
   totalPrice: "",
+  totalItems: 0,
 };
 
 const CartContext = createContext<UseCartContextType>(initCartContextState);
