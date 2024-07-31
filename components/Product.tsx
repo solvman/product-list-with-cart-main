@@ -3,6 +3,7 @@ import { ProductType } from "@/context/ProductsContext";
 import useCart from "@/hooks/useCart";
 import CartButton from "./CartButton";
 import Image from "next/image";
+import { cn } from "@/utils/utils";
 
 type PropsType = { product: ProductType };
 
@@ -31,7 +32,14 @@ function Product({ product }: PropsType) {
   return (
     <div className="flex flex-col gap-200">
       <div className="relative mb-[22px]">
-        <div className="relative h-[212px] w-full overflow-hidden rounded-lg">
+        <div
+          className={cn(
+            "relative h-[212px] w-full overflow-hidden rounded-lg shadow-sm",
+            {
+              "border-2 border-red": quantity > 0,
+            },
+          )}
+        >
           <Image
             className="h-auto w-full object-cover"
             src={product.image.desktop}
