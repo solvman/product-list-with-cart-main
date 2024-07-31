@@ -46,16 +46,27 @@ function reducer(state: CartStateType, action: ReducerAction): CartStateType {
           `Payload is required for ${REDUCER_ACTIONS.INCREMENT} action`,
         );
       }
-      const filteredCart = state.cart.filter(
-        (item) => item.id !== action.payload?.id,
-      );
+
+      let updatedCart: CartItemType[];
+
       const itemExists = state.cart.find(
         (item) => item.id === action.payload?.id,
       );
-      const quantity = itemExists ? itemExists.quantity + 1 : 1;
+
+      if (itemExists) {
+        updatedCart = state.cart.map((item) => {
+          if (item.id === action.payload?.id) {
+            return { ...item, quantity: item.quantity + 1 };
+          }
+          return item;
+        });
+      } else {
+        updatedCart = [...state.cart, { ...action.payload, quantity: 1 }];
+      }
+
       return {
         ...state,
-        cart: [...filteredCart, { ...action.payload, quantity }],
+        cart: [...updatedCart],
       };
     }
     case REDUCER_ACTIONS.DECREMENT: {
@@ -64,20 +75,32 @@ function reducer(state: CartStateType, action: ReducerAction): CartStateType {
           `Payload is required for ${REDUCER_ACTIONS.DECREMENT} action`,
         );
       }
-      const filteredCart = state.cart.filter(
-        (item) => item.id !== action.payload?.id,
-      );
+
+      let updatedCart: CartItemType[];
+
       const itemExists = state.cart.find(
         (item) => item.id === action.payload?.id,
       );
-      const quantity = itemExists ? itemExists.quantity - 1 : 0;
-      if (quantity > 0) {
-        return {
-          ...state,
-          cart: [...filteredCart, { ...action.payload, quantity }],
-        };
+
+      if (itemExists && itemExists.quantity > 1) {
+        updatedCart = state.cart.map((item) => {
+          if (item.id === action.payload?.id) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        });
+      } else if (itemExists && itemExists.quantity <= 1) {
+        updatedCart = state.cart.filter(
+          (item) => item.id !== action.payload?.id,
+        );
+      } else {
+        updatedCart = [...state.cart];
       }
-      return { ...state, cart: filteredCart };
+
+      return {
+        ...state,
+        cart: [...updatedCart],
+      };
     }
     case REDUCER_ACTIONS.SUBMIT: {
       if (!action.payload) {
