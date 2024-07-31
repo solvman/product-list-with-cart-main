@@ -7,7 +7,7 @@ function Cart() {
   const { cart, totalPrice } = useCart();
 
   return (
-    <section className="w-full self-start bg-white lg:w-[35%]">
+    <section className="w-full self-start rounded-xl bg-white p-300 shadow-sm lg:w-[35%]">
       <h2 className="">Cart</h2>
       <ul className="flex flex-col">
         {cart.map((item: CartItemType) => {
