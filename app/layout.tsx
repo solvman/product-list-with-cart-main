@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Red_Hat_Text } from "next/font/google";
 import "./globals.css";
 import Providers from "@/context/Providers";
+import Modal from "@/components/Modal";
 
 const redHatText = Red_Hat_Text({
   subsets: ["latin"],
@@ -23,9 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body
-          className={`${redHatText.variable} min-w-[375px] bg-rose-50 font-sans text-rose-900`}
+          className={`${redHatText.variable} relative min-w-[375px] bg-rose-50 font-sans text-rose-900`}
         >
           {children}
+          <Modal />
         </body>
       </Providers>
     </html>

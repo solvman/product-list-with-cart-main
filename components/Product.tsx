@@ -46,6 +46,7 @@ function Product({ product }: PropsType) {
             alt={product.name}
             sizes="(min-width: 1440) 17vw, (min-width: 640) 33vw, 100vw"
             fill
+            priority
           />
         </div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
