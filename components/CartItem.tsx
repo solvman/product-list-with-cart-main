@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { CartItemType } from "@/context/CartContext";
 import useCart from "@/hooks/useCart";
 
@@ -23,8 +23,13 @@ function CartItem({ item }: PropType) {
     <motion.div
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
+      exit={{ opacity: 0, x: -50 }}
+      transition={{
+        duration: 0.125,
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      }}
       className="flex flex-row items-center"
     >
       <div className="flex flex-col gap-100">

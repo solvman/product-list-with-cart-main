@@ -7,6 +7,7 @@ import useModal from "@/hooks/useModal";
 import ConfirmOrder from "@/components/ConfirmOrder";
 import Image from "next/image";
 import emptyCartImg from "@/public/images/illustration-empty-cart.svg";
+import { AnimatePresence } from "framer-motion";
 
 function Cart() {
   const { cart, totalPrice, totalItems } = useCart();
@@ -17,16 +18,18 @@ function Cart() {
   const cartWithItems = (
     <>
       <ul className="flex flex-col">
-        {cart.map((item: CartItemType) => {
-          return (
-            <li
-              key={item.id}
-              className="border-b border-b-rose-100 py-200 first:pt-0 last:border-none last:pb-0"
-            >
-              <CartItem item={item} />
-            </li>
-          );
-        })}
+        <AnimatePresence>
+          {cart.map((item: CartItemType) => {
+            return (
+              <li
+                key={item.id}
+                className="border-b border-b-rose-100 py-200 first:pt-0 last:border-none last:pb-0"
+              >
+                <CartItem item={item} />
+              </li>
+            );
+          })}
+        </AnimatePresence>
       </ul>
       <hr className="w-full border-rose-100" />
       <p className="flex flex-row items-center">
