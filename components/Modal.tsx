@@ -1,15 +1,17 @@
 "use client";
 import useModal from "@/hooks/useModal";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePreventScroll } from "react-aria";
 
 function Modal() {
   const { modalContent, isOpen } = useModal();
+  usePreventScroll();
 
   return (
     <AnimatePresence>
       {isOpen && (
         <div className="absolute inset-0 bg-black/50">
-          <div className="fixed h-screen w-screen overflow-y-auto">
+          <div className="fixed h-screen w-full overflow-y-auto">
             {/* Modal */}
             <motion.div
               animate={{ opacity: 1, top: "10%" }}
@@ -17,7 +19,6 @@ function Modal() {
               exit={{ opacity: 0, top: "100%" }}
               transition={{
                 delay: 0.1,
-                duration: 1,
                 type: "spring",
                 damping: 25,
                 stiffness: 300,

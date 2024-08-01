@@ -1,18 +1,11 @@
-import { useState, createContext, use, useEffect } from "react";
+import { useState, createContext, useEffect } from "react";
+import { usePreventScroll } from "react-aria";
 
 function useModalContext() {
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode | null>(
     null,
   );
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isOpen]);
 
   const openModal = (content: React.ReactNode) => {
     setIsOpen(true);
