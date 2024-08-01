@@ -44,7 +44,7 @@ function Product({ product }: PropsType) {
             className="h-auto w-full object-cover"
             src={product.image.desktop}
             alt={product.name}
-            sizes="(min-width: 1440) 17vw, (min-width: 640) 33vw, 100vw"
+            sizes="(min-width: 1240) 250w, (min-width: 640) 213w, 327w"
             fill
             priority
           />

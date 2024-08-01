@@ -31,10 +31,10 @@ function ModalBody() {
       transition={{
         duration: 0.125,
         type: "spring",
-        damping: 18,
-        stiffness: 200,
+        damping: 10,
+        stiffness: 100,
       }}
-      className="relative -right-1/2 top-full flex w-full -translate-x-1/2 flex-col rounded-t-xl bg-white px-300 py-500 shadow-lg md:rounded-xl md:py-500 lg:max-w-[592px]"
+      className="relative -right-1/2 top-full flex w-full -translate-x-1/2 flex-col rounded-xl bg-white px-300 py-500 shadow-lg md:py-500 lg:max-w-[592px]"
     >
       <div>{modalContent}</div>
     </motion.div>
