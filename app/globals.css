@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  .gutter {
-    overflow: auto;
-    scrollbar-width: thin;
-    scrollbar-gutter: stable;
-  }
-}
-
 @layer components {
   .text-preset-1 {
     @apply text-[56px] leading-[120%] tracking-normal;
