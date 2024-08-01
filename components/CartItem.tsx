@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { CartItemType } from "@/context/CartContext";
 import useCart from "@/hooks/useCart";
 
@@ -19,7 +20,13 @@ function CartItem({ item }: PropType) {
   }).format(item.price * item.quantity);
 
   return (
-    <div className="flex flex-row items-center">
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
+      className="flex flex-row items-center"
+    >
       <div className="flex flex-col gap-100">
         <h3 className="text-preset-3 font-semibold">{item.name}</h3>
         <div className="text-preset-4 flex flex-row gap-100">
@@ -40,7 +47,7 @@ function CartItem({ item }: PropType) {
           <path d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z" />
         </svg>
       </button>
-    </div>
+    </motion.div>
   );
 }
 export default CartItem;
