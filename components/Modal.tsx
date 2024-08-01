@@ -3,7 +3,7 @@ import useModal from "@/hooks/useModal";
 import { motion } from "framer-motion";
 
 function Modal() {
-  const { modalContent, isOpen, closeModal } = useModal();
+  const { modalContent, isOpen } = useModal();
 
   return (
     isOpen && (

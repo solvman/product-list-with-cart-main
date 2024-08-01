@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { CartItemType } from "@/context/CartContext";
 import useCart from "@/hooks/useCart";
 

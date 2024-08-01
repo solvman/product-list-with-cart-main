@@ -18,6 +18,7 @@ function ConfirmedItem({ item }: PropsType) {
           src={item.thumbnail}
           fill
           alt={item.name}
+          sizes="48px"
         />
       </div>
       <div className="text-preset-4 flex flex-col gap-100">
