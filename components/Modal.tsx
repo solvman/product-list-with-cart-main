@@ -10,7 +10,7 @@ function Modal() {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0">
-          <div className="absolute inset-0 bg-black/50">
+          <div className="absolute inset-0 overflow-y-auto bg-black/50">
             <ModalBody />
           </div>
         </div>

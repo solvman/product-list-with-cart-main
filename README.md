@@ -31,7 +31,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [https://github.com/solvman/product-list-with-cart-main](https://github.com/solvman/product-list-with-cart-main)
-- Live Site URL: [https://app.netlify.com/sites/jade-hummingbird-e0fd18/overview](https://app.netlify.com/sites/jade-hummingbird-e0fd18/overview)
+- Live Site URL: [https://app.netlify.com/sites/jade-hummingbird-e0fd18](https://app.netlify.com/sites/jade-hummingbird-e0fd18)
 
 ## My process
 
